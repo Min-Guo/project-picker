@@ -1,0 +1,28 @@
+{
+  "name": "project-picker",
+  "version": "0.0.1",
+  "description": "Help you to pick up programming language and database",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Min-Guo/project-picker.git"
+  },
+  "keywords": [
+    "druid",
+    "spark",
+    "node",
+    "streaming"
+  ],
+  "author": "Min",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Min-Guo/project-picker/issues"
+  },
+  "homepage": "https://github.com/Min-Guo/project-picker#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
