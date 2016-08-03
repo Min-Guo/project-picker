@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Min-Guo/project-picker#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "request": "^2.74.0"
   }
 }
