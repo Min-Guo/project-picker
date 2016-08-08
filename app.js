@@ -2,43 +2,49 @@ var express = require('express');
 var request = require('request');
 var app = express();
 var formData = {
-	queryType : "topN",
-	dataSource : "tweet",
-	granularity : "all",
-	dimension : "hashTag",
-	threshold : 5,
-	metric : "count",
-	aggregations : [{
-		type : "count",
-		name : "count"
-	}],
-	intervals: ["2016-07-31T17:00:00.000/2016-08-01T18:00:00.000"]
+	"queryType": "topN",
+    "dataSource": "test1_hashTagRankByCountWithScore",
+    "granularity": "all",
+    "dimension": "hashTag",
+    "threshold": 10,
+    "metric": "score",
+      "aggregations": [
+    {
+      "type": "count",
+      "name": "count"
+    },	{"type": "longSum", "fieldName": "score","name": "score"}
+],
+    "intervals": ["2016-08-05T05:00:00.000/2016-08-05T23:00:00.000"]
 };
 
 
 app.use(express.static('public'));
 
 app.get('/hello', function (req, res) {
-  res.send('Hello World!');
+  // res.send('Hello World!');
+  res.send(req.query);
 });
 
+app.get('/test_html', function (req, res) {
+  res.sendfile('public/html/QueryPage.html');
+});
 
 app.get('/query', function (req, res) {
 	request({
-  uri: "http://ec2-54-83-35-212.compute-1.amazonaws.com:8082/druid/v2/?pretty",
-  method: "POST",
-  json: true,
-    headers: {
-        "content-type": "application/json",
-    },
+  		uri: "http://ec2-54-83-35-212.compute-1.amazonaws.com:8082/druid/v2/?pretty",
+  		method: "POST",
+  		json: true,
+    	headers: {
+        	"content-type": "application/json",
+    	},
     body: formData
   // form: formData
-}, function(error, response, body) {
-	res.send(JSON.stringify(body));
-	console.log(error);
-  console.log(body);
-});
-
+	}, function(error, response, body) {
+		// res.send(JSON.stringify(body));
+    res.send(body);
+		console.log(error);
+		console.log(body);
+	});
 });
 
 
